@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+
+\title{Chapter 1: Untyped Lambda Calculus}
+\author{Type Theory and Formal Proof Reading Group}
+\date{}
+
+\begin{document}
+
+\maketitle
+1.1 Apply Notation 1.3.10 on the following $\lambda$-terms. So, remove parentheses and combine $\lambda$-abstractions:
+
+(a) $(\lambda x . (((x z) y) (x x)))$
+
+(b) $((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))$
+
+\vspace{1em}
+
+
+\textbf{Solutions:}
+
+\textbf{(a)}
+Original term:
+\[
+(\lambda x . (((x z) y) (x x)))
+\]
+
+Applying Notation 1.3.10:
+\[
+(\lambda x . (((x z) y) (x x))) \implies \lambda x . (((x z) y) (x x)) \implies \lambda x . (((x z) y) (x x))
+\]
+
+\textbf{(b)}
+Original term:
+\[
+((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))
+\]
+
+Applying Notation 1.3.10:
+% First, we substitute \( \lambda u . u \) for \( x \):
+\[
+((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)) \implies
+(\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)
+\]
+
+Now simplify:\\
+\begin{align*}
+   (\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
+   &= (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) \\
+   &= (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y] \\
+   &= \lambda y . (\lambda z . (z (y z)))
+\end{align*}
+
+
+\end{document}
