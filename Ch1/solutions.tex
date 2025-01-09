@@ -15,113 +15,113 @@
 
 \begin{questions}
 
-% 1.1
-\question Remove parenthesis, combine abstractions.
+	% 1.1
+	\question Remove parenthesis, combine abstractions.
 
-Apply Notation 1.3.10 on the following $\lambda$-terms. So, remove parentheses and combine $\lambda$-abstractions:
+	Apply Notation 1.3.10 on the following $\lambda$-terms. So, remove parentheses and combine $\lambda$-abstractions:
 
-\begin{parts}
-\part
-$(\lambda x . (((x z) y) (x x)))$
+	\begin{parts}
+		\part
+		$(\lambda x . (((x z) y) (x x)))$
 
-\begin{solution}
+		\begin{solution}
 
-Original term:
-\[
-(\lambda x . (((x z) y) (x x)))
-\]
+			Original term:
+			\[
+				(\lambda x . (((x z) y) (x x)))
+			\]
 
-Applying Notation 1.3.10:
-\[
-(\lambda x . (((x z) y) (x x))) \implies \lambda x . (((x z) y) (x x)) \implies \lambda x . (((x z) y) (x x))
-\]
-\end{solution}
+			Applying Notation 1.3.10:
+			\[
+				(\lambda x . (((x z) y) (x x))) \implies \lambda x . (((x z) y) (x x)) \implies \lambda x . (((x z) y) (x x))
+			\]
+		\end{solution}
 
-\part
-$((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))$
+		\part
+		$((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))$
 
-\begin{solution}
+		\begin{solution}
 
-Original term:
-\[
-((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))
-\]
+			Original term:
+			\[
+				((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u))
+			\]
 
-Applying Notation 1.3.10:
-% First, we substitute \( \lambda u . u \) for \( x \):
-\[
-((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)) \implies
-(\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)
-\]
+			Applying Notation 1.3.10:
+			% First, we substitute \( \lambda u . u \) for \( x \):
+			\[
+				((\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)) \implies
+				(\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u)
+			\]
 
-Now simplify:\\
-\begin{align*}
-   (\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
-   &= (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) \\
-   &= (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y] \\
-   &= \lambda y . (\lambda z . (z (y z)))
-\end{align*}
-\end{solution}
-\end{parts}
+			Now simplify:\\
+			\begin{align*}
+				(\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
+				 & = (\lambda y . (\lambda z . (z (((\lambda u . u) y) z))))                                \\
+				 & = (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y]                        \\
+				 & = \lambda y . (\lambda z . (z (y z)))
+			\end{align*}
+		\end{solution}
+	\end{parts}
 
 
 
-% 1.2
-\question 
+	% 1.2
+	\question
 
-% 1.3
-\question 
+	% 1.3
+	\question
 
-% 1.4
-\question 
+	% 1.4
+	\question
 
-% 1.5
-\question 
+	% 1.5
+	\question
 
-% 1.6
-\question 
+	% 1.6
+	\question
 
-% 1.7
-\question 
+	% 1.7
+	\question
 
-% 1.8
-\question 
+	% 1.8
+	\question
 
-% 1.9
-\question 
+	% 1.9
+	\question
 
-% 1.10
-\question 
+	% 1.10
+	\question
 
-% 1.11
-\question 
+	% 1.11
+	\question
 
-% 1.12
-\question 
+	% 1.12
+	\question
 
-% 1.13
-\question 
+	% 1.13
+	\question
 
-% 1.14
-\question 
+	% 1.14
+	\question
 
-% 1.15
-\question 
+	% 1.15
+	\question
 
-% 1.16
-\question 
+	% 1.16
+	\question
 
-% 1.17
-\question 
+	% 1.17
+	\question
 
-% 1.18
-\question 
+	% 1.18
+	\question
 
-% 1.19
-\question 
+	% 1.19
+	\question
 
-% 1.20
-\question 
+	% 1.20
+	\question
 
 \end{questions}
 
