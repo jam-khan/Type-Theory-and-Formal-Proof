@@ -1,5 +1,6 @@
 \documentclass[12pt]{exam}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
@@ -15,7 +16,7 @@
 
 \begin{questions}
 
-	% 1.1
+    % 1.1
 	\question Remove parenthesis, combine abstractions.
 
 	Apply Notation 1.3.10 on the following $\lambda$-terms. So, remove parentheses and combine $\lambda$-abstractions:
@@ -68,15 +69,98 @@
 
 	% 1.2
 	\question
+Which of the following are $\alpha$-equivalent to $\lambda x. x (\lambda x. x)$ ?
+
+\begin{parts}
+
+\part $\lambda y. y (\lambda x. x)$
+
+\begin{solution}
+$[x/y] => \lambda x. x (\lambda x. x)$
+
+So, yes.
+\end{solution}
+
+\part
+$\lambda y. y (\lambda x. y)$
+
+\begin{solution}
+No. Second abstraction's var uses outer abstraction's var.
+\end{solution}
+
+\part
+$\lambda y. y (\lambda y. x)$
+
+\begin{solution}
+No. $x$ is free.
+\end{solution}
+\end{parts}
 
 	% 1.3
 	\question
+Prove that $\lambda x. x (\lambda z. y) =_\alpha \lambda z. z (\lambda z. y)$.
+
+\begin{solution}
+
+\begin{tabular}{l|l}
+Term & Reason \\
+\hline
+$\lambda x. x (\lambda z. y)$ &                            \\
+$\lambda z. z (\lambda z. y)$ & $[z/x]$ $\alpha$-reduction \\
+\end{tabular}
+
+\end{solution}
 
 	% 1.4
 	\question
 
 	% 1.5
 	\question
+Perform the following substitutions: % 1.5
+\begin{parts}
+\part %(\lambda x. y(\lambda y. x y))[y := \lambda z. z x]
+$(\lambda x. \ y \ (\lambda y.\ x\ y))[y := \lambda z.\ z\ x]$
+
+\begin{solution}
+$(\lambda x.\ (\lambda z.\ z\ x)\ (\lambda y.\ x\ y))$
+\end{solution}
+
+\part
+$((x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
+
+\begin{solution}
+
+    \[
+\begin{array}{rl}
+   & ((x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
+ = & ((x\ z\ z)[x\ :=\ y]) \\
+ = & (y\ z\ z) \\
+\end{array}
+    \]
+
+\end{solution}
+
+\part
+$((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
+
+\begin{solution}
+    \[
+\begin{array}{rl}
+  & ((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
+= & ((\lambda x.\ x\ z\ z)[x\ :=\ y])           \\
+= & (\lambda y.\ y\ z\ z)                       \\
+\end{array}
+    \]
+\end{solution}
+
+\part
+$(\lambda y.\ y\ y\ x)[x\ :=\ y\ z]$
+
+\begin{solution}
+$(\lambda y.\ y\ y\ (y\ z))$
+\end{solution}
+
+\end{parts}
 
 	% 1.6
 	\question
@@ -87,8 +171,71 @@
 	% 1.8
 	\question
 
-	% 1.9
+	1.9
 	\question
+Let
+    \begin{itemize}
+        \item $S = \lambda x y z. (x z) (y z)$
+        \item $K = \lambda x y. x$
+        \item $I = \lambda x. x$
+        \item $P$, $Q$, $R$, $U$, $V$, $W$ are arbitrary lambda terms.
+        \item $B = S (K S) K$
+    \end{itemize}
+
+    \begin{parts}
+        \part Show that $K P Q \twoheadrightarrow_{\beta}\ = I$ and $S P Q R \twoheadrightarrow_{\beta}\ = P R (Q R)$.
+\begin{solution}
+    \[
+        \begin{array}{cl}
+              & K P Q \\
+            = & (\lambda x y. x) P Q \\
+            = & (\lambda y. P) Q \\
+            = & P \\
+        \end{array}\hfill%
+        \begin{array}{cl}
+              & S P Q R \\
+            = & (\lambda x y z. x z (y z)) P Q R \\
+            = & (\lambda y z. P z (y z)) Q R \\
+            = & (\lambda z. P z (Q z)) R \\
+            = & P R (Q R) \\
+        \end{array}
+        \]
+\end{solution}
+
+        \part Show that S K K = I.
+\begin{solution}
+    \[
+        \begin{array}{cl}
+              & S K K \\
+            = & (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) \\
+            = & (\lambda y z. (\lambda x y. x) z (y z)) (\lambda x y. x)     \\
+            = & (\lambda y z. (\lambda y. z) (y z)) (\lambda x y. x)     \\
+            = & (\lambda y z. z) (\lambda x y. x)     \\
+            = & (\lambda z. z)      \\
+            = & (\lambda x. x)      \\
+        \end{array}
+    \]
+\end{solution}
+
+        % \part Show that B U V W = U (V W).
+% \begin{solution}
+    % \begin{mathpar}
+        % \begin{array}{cl}
+        %       & B U V W \\
+        %     = & (S (K S) K) U V W \\
+        %     = & ((\lambda x y z. x z (y z)) (K S) K) U V W \\
+        %     = & ((\lambda y z. (K S) z (y z)) K) U V W \\
+        %     = & ((\lambda y z. S (y z)) K) U V W \\
+        %     = & ((\lambda z. S (U z)) K) V W \\
+        %     = & ((S (U V)) K) V W \\
+        %     = & ((\lambda x y z. x z (y z)) (U V) K) V W \\
+        %     = & ((\lambda y z. (U V) z (y z)) K) V W \\
+        %     = & (\lambda z. (U V) z (K z)) V W \\
+        %     = & (U V) V (K V) V W \\
+        % \end{array}
+    % \end{mathpar}
+% \end{solution}
+    \end{parts}
 
 	% 1.10
 	\question
