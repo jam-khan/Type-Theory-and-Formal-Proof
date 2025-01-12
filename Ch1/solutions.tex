@@ -284,7 +284,15 @@
 
 	% 1.8
 	\question
-
+        Show that the terms ($\lambda$x . x x)y and ($\lambda$xy . y x)x x are not $\beta$-convertible.
+        \begin{solution}
+        
+            ($\lambda$x . x x)y $\rightarrow_{\beta}$ (x x)[x := y] $\rightarrow_{\beta}$ y y $\rightarrow_{\beta}$ \\
+            Can't be reduced further to a single term.\\
+            ($\lambda$xy . y x)x x $\rightarrow_{\beta}$ ($\lambda$y . y x)[x := x] x $\rightarrow_{\beta}$ ($\lambda$y . y x) x  $\rightarrow_{\beta}$ (y x) [y := x] $\rightarrow_{\beta}$ x x\\
+            Can't be reduced further to a single term.
+            
+        \end{solution}
 	% 1.9
 	\question
 	Let
