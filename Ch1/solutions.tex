@@ -18,7 +18,7 @@
 
 \begin{questions}
 
-    % 1.1
+	% 1.1
 	\question Remove parenthesis, combine abstractions.
 
 	Apply Notation 1.3.10 on the following $\lambda$-terms. So, remove parentheses and combine $\lambda$-abstractions:
@@ -58,14 +58,14 @@
 			\]
 
 			Now simplify:\\
-    \[
-            \begin{array}{cl}
-                   & (\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
-				 = & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z))))                                \\
-				 = & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y]                        \\
-				 = & \lambda y . (\lambda z . (z (y z)))
-			\end{array}
-    \]
+			\[
+				\begin{array}{cl}
+					  & (\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
+					= & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z))))                                     \\
+					= & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y]                             \\
+					= & \lambda y . (\lambda z . (z (y z)))
+				\end{array}
+			\]
 		\end{solution}
 	\end{parts}
 
@@ -73,61 +73,61 @@
 
 	% 1.2
 	\question
-Which of the following are $\alpha$-equivalent to $\lambda x. x (\lambda x. x)$ ?
+	Which of the following are $\alpha$-equivalent to $\lambda x. x (\lambda x. x)$ ?
 
-\begin{parts}
+	\begin{parts}
 
-\part $\lambda y. y (\lambda x. x)$
+		\part $\lambda y. y (\lambda x. x)$
 
-\begin{solution}
-$[x/y] \Rightarrow \lambda x. x (\lambda x. x)$
+		\begin{solution}
+			$[x/y] \Rightarrow \lambda x. x (\lambda x. x)$
 
-So, yes.
-\end{solution}
+			So, yes.
+		\end{solution}
 
-\part
-$\lambda y. y (\lambda x. y)$
+		\part
+		$\lambda y. y (\lambda x. y)$
 
-\begin{solution}
-No. Second abstraction's var uses outer abstraction's var.
-\end{solution}
+		\begin{solution}
+			No. Second abstraction's var uses outer abstraction's var.
+		\end{solution}
 
-\part
-$\lambda y. y (\lambda y. x)$
+		\part
+		$\lambda y. y (\lambda y. x)$
 
-\begin{solution}
-No. $x$ is free.
-\end{solution}
-\end{parts}
+		\begin{solution}
+			No. $x$ is free.
+		\end{solution}
+	\end{parts}
 
 	% 1.3
 	\question
-Prove that $\lambda x. x (\lambda z. y) =_\alpha \lambda z. z (\lambda z. y)$.
+	Prove that $\lambda x. x (\lambda z. y) =_\alpha \lambda z. z (\lambda z. y)$.
 
-\begin{solution}
+	\begin{solution}
 
-\begin{tabular}{cll}
-      & $\lambda x. x (\lambda z. y)$ &                                \\
-    = & $\lambda z. z (\lambda z. y)$ & (Reason: $[z/x]$ $\alpha$-reduction) \\
-\end{tabular}
+		\begin{tabular}{cll}
+			  & $\lambda x. x (\lambda z. y)$ &                                      \\
+			= & $\lambda z. z (\lambda z. y)$ & (Reason: $[z/x]$ $\alpha$-reduction) \\
+		\end{tabular}
 
-\end{solution}
+	\end{solution}
 
 	% 1.4
 	\question
-    \begin{parts}
-        \part
-Give U as its tree representation.
+	\begin{parts}
+		\part
+		Give U as its tree representation.
 
-        \begin{solution}
-Based on the definition of diagrams as in Figure 1.1
-\begin{itemize}
-\item Application are joint points labelled 'a'.
-\item Abstraction are marked here with $\lambda$ (circled in book)
-\end{itemize}
+		\begin{solution}
+			Based on the definition of diagrams as in Figure 1.1
+			\begin{itemize}
+				\item Application are joint points labelled 'a'.
+				\item Abstraction are marked here with $\lambda$ (circled in book)
+			\end{itemize}
 
-\begin{center}
-\begin{forest}
+			\begin{center}
+				\begin{forest}
 [a
     [$\lambda z$
       [a
@@ -146,135 +146,135 @@ Based on the definition of diagrams as in Figure 1.1
       [x]
     ]
 ]
-\end{forest}
-\end{center} 
-            beginbegin
-        \end{solution}
+				\end{forest}
+			\end{center}
+			beginbegin
+		\end{solution}
 
 
-\part Generate free variables of $U$ (as in Examples 1.4.2).
-   
-\begin{solution}
-Free variables can be found as:
+		\part Generate free variables of $U$ (as in Examples 1.4.2).
 
-\begin{mathpar}
-    \begin{array}{rcl}
-FV(x)    &  = &  x \\
-FV(M N)  & =  & FV(M) \cup FV(N) \\
-FV(\lambda x. M)  & = &  FV(M) \ {x} \\
-    \end{array}
-\end{mathpar}
+		\begin{solution}
+			Free variables can be found as:
 
-For given lambda term, the free variables are:
+			\begin{mathpar}
+				\begin{array}{rcl}
+					FV(x)            & = & x                \\
+					FV(M N)          & = & FV(M) \cup FV(N) \\
+					FV(\lambda x. M) & = & FV(M) \ {x}      \\
+				\end{array}
+			\end{mathpar}
 
-\begin{mathpar}
-    \begin{array}{cl}
-   & FV[(\lambda z. z x z)((\lambda y. x y) x)] \\
- = & FV(\lambda z. z x z) \cup FV((\lambda y. x y) x) \\
-  & FV(\lambda z. z x z) \\
-\\
-= & FV((z x) z) \ {z} \\
-= & [FV(z x) \cup {z}] \ {z} \\
-= & [{z, x} \cup {z}] \ {z} \\
-= & {x} \\
-\\
-  & FV((\lambda y. x y) x) \\
-= & FV(\lambda y. x y) \cup {x} \\
-= & [FV(x y) \ {y}] \cup {x} \\
-= & {x}
-    \end{array}
-\end{mathpar}
+			For given lambda term, the free variables are:
 
-Therefore, the answer is: ${x} \cup {x}  = {x}$
+			\begin{mathpar}
+				\begin{array}{cl}
+					  & FV[(\lambda z. z x z)((\lambda y. x y) x)]       \\
+					= & FV(\lambda z. z x z) \cup FV((\lambda y. x y) x) \\
+					  & FV(\lambda z. z x z)                             \\
+					\\
+					= & FV((z x) z) \ {z}                                \\
+					= & [FV(z x) \cup {z}] \ {z}                         \\
+					= & [{z, x} \cup {z}] \ {z}                          \\
+					= & {x}                                              \\
+					\\
+					  & FV((\lambda y. x y) x)                           \\
+					= & FV(\lambda y. x y) \cup {x}                      \\
+					= & [FV(x y) \ {y}] \cup {x}                         \\
+					= & {x}
+				\end{array}
+			\end{mathpar}
 
-\end{solution}
+			Therefore, the answer is: ${x} \cup {x}  = {x}$
 
-\part
-Find out which of the following $\lambda$-terms are $\alpha$-equivalent to $U$
-and give a motivation why; also check which of them satisﬁes the Barendregt
-convention:
-\begin{itemize}
-    \item $(\lambda y. y x y)((\lambda z. x z) x)$
- \item $(\lambda x. x y x)((\lambda z. y z) y)$
- \item $(\lambda y. y x y)((\lambda y. x y) x)$
- \item $(\lambda v. (v x) v)((\lambda u. u v) x)$
-\end{itemize}
-     
-\begin{solution}
-The last one is not $\alpha$-equiv to $U$ because of the second sub-term.
-All others are.
+		\end{solution}
 
-Barendregt convention means to avoid using variables names that will
-cause shadowing and free variable capture.
+		\part
+		Find out which of the following $\lambda$-terms are $\alpha$-equivalent to $U$
+		and give a motivation why; also check which of them satisﬁes the Barendregt
+		convention:
+		\begin{itemize}
+			\item $(\lambda y. y x y)((\lambda z. x z) x)$
+			\item $(\lambda x. x y x)((\lambda z. y z) y)$
+			\item $(\lambda y. y x y)((\lambda y. x y) x)$
+			\item $(\lambda v. (v x) v)((\lambda u. u v) x)$
+		\end{itemize}
 
-\begin{itemize}
-  \item 1st one doesn't satisfy Barendregt conventions because of $(\lambda z. x z) x$
-  \item Likewise 2nd one, because of $((\lambda z. y z) y)$
-  \item Likewise 3rd one, because of $((\lambda y. x y) x)$
-\end{itemize}
-   
-Last one:
-   
-\begin{mathpar}
-    \begin{array}{cl}
-   & (\lambda v. (v x) v) ((\lambda u. u v) x) \\
- = & (\lambda v. (v x) v) (x v) \\
- = & ((x v) x) (x v) \\
-   \end{array}
-\end{mathpar}
+		\begin{solution}
+			The last one is not $\alpha$-equiv to $U$ because of the second sub-term.
+			All others are.
 
-So last one doesn't satisfy Barendregt convention either..
-\end{solution}
+			Barendregt convention means to avoid using variables names that will
+			cause shadowing and free variable capture.
 
-    \end{parts}
+			\begin{itemize}
+				\item 1st one doesn't satisfy Barendregt conventions because of $(\lambda z. x z) x$
+				\item Likewise 2nd one, because of $((\lambda z. y z) y)$
+				\item Likewise 3rd one, because of $((\lambda y. x y) x)$
+			\end{itemize}
+
+			Last one:
+
+			\begin{mathpar}
+				\begin{array}{cl}
+					  & (\lambda v. (v x) v) ((\lambda u. u v) x) \\
+					= & (\lambda v. (v x) v) (x v)                \\
+					= & ((x v) x) (x v)                           \\
+				\end{array}
+			\end{mathpar}
+
+			So last one doesn't satisfy Barendregt convention either..
+		\end{solution}
+
+	\end{parts}
 
 	% 1.5
 	\question
-Perform the following substitutions: % 1.5
-\begin{parts}
-\part %(\lambda x. y(\lambda y. x y))[y := \lambda z. z x]
-$(\lambda x. \ y \ (\lambda y.\ x\ y))[y := \lambda z.\ z\ x]$
+	Perform the following substitutions: % 1.5
+	\begin{parts}
+		\part %(\lambda x. y(\lambda y. x y))[y := \lambda z. z x]
+		$(\lambda x. \ y \ (\lambda y.\ x\ y))[y := \lambda z.\ z\ x]$
 
-\begin{solution}
-$(\lambda x.\ (\lambda z.\ z\ x)\ (\lambda y.\ x\ y))$
-\end{solution}
+		\begin{solution}
+			$(\lambda x.\ (\lambda z.\ z\ x)\ (\lambda y.\ x\ y))$
+		\end{solution}
 
-\part
-$((x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
+		\part
+		$((x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
 
-\begin{solution}
+		\begin{solution}
 
-    \[
-\begin{array}{rl}
-   & ((x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
- = & ((x\ z\ z)[x\ :=\ y]) \\
- = & (y\ z\ z) \\
-\end{array}
-    \]
+			\[
+				\begin{array}{rl}
+					  & ((x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
+					= & ((x\ z\ z)[x\ :=\ y])           \\
+					= & (y\ z\ z)                       \\
+				\end{array}
+			\]
 
-\end{solution}
+		\end{solution}
 
-\part
-$((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
+		\part
+		$((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z]$
 
-\begin{solution}
-    \[
-\begin{array}{rl}
-  & ((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
-= & ((\lambda x.\ x\ z\ z)[x\ :=\ y])           \\
-= & (\lambda y.\ y\ z\ z)                       \\
-\end{array}
-    \]
-\end{solution}
+		\begin{solution}
+			\[
+				\begin{array}{rl}
+					  & ((\lambda x.\ x\ y\ z)[x\ :=\ y])[y\ :=\ z] \\
+					= & ((\lambda x.\ x\ z\ z)[x\ :=\ y])           \\
+					= & (\lambda y.\ y\ z\ z)                       \\
+				\end{array}
+			\]
+		\end{solution}
 
-\part
-$(\lambda y.\ y\ y\ x)[x\ :=\ y\ z]$
+		\part
+		$(\lambda y.\ y\ y\ x)[x\ :=\ y\ z]$
 
-\begin{solution}
-$(\lambda y.\ y\ y\ (y\ z))$
-\end{solution}
+		\begin{solution}
+			$(\lambda y.\ y\ y\ (y\ z))$
+		\end{solution}
 
-\end{parts}
+	\end{parts}
 
 	% 1.6
 	\question
@@ -287,76 +287,76 @@ $(\lambda y.\ y\ y\ (y\ z))$
 
 	% 1.9
 	\question
-Let
-    \begin{itemize}
-        \item $S = \lambda x y z. (x z) (y z)$
-        \item $K = \lambda x y. x$
-        \item $I = \lambda x. x$
-        \item $P$, $Q$, $R$, $U$, $V$, $W$ are arbitrary lambda terms.
-        \item $B = S (K S) K$
-    \end{itemize}
+	Let
+	\begin{itemize}
+		\item $S = \lambda x y z. (x z) (y z)$
+		\item $K = \lambda x y. x$
+		\item $I = \lambda x. x$
+		\item $P$, $Q$, $R$, $U$, $V$, $W$ are arbitrary lambda terms.
+		\item $B = S (K S) K$
+	\end{itemize}
 
-    \begin{parts}
-        \part Show that $K P Q \twoheadrightarrow_{\beta}\ = I$ and $S P Q R \twoheadrightarrow_{\beta}\ = P R (Q R)$.
-\begin{solution}
-    \\
-    \begin{minipage}{0.5\linewidth}
-    \[
-        \begin{array}{cl}
-              & K P Q \\
-            = & (\lambda x y. x) P Q \\
-            = & (\lambda y. P) Q \\
-            = & P \\
-        \end{array}\hfill%
-    \]
-    \end{minipage}
-    \begin{minipage}{0.5\linewidth}
-    \[
-        \begin{array}{cl}
-              & S P Q R \\
-            = & (\lambda x y z. x z (y z)) P Q R \\
-            = & (\lambda y z. P z (y z)) Q R \\
-            = & (\lambda z. P z (Q z)) R \\
-            = & P R (Q R) \\
-        \end{array}
-   \]
-    \end{minipage}
-\end{solution}
+	\begin{parts}
+		\part Show that $K P Q \twoheadrightarrow_{\beta}\ = I$ and $S P Q R \twoheadrightarrow_{\beta}\ = P R (Q R)$.
+		\begin{solution}
+			\\
+			\begin{minipage}{0.5\linewidth}
+				\[
+					\begin{array}{cl}
+						  & K P Q                \\
+						= & (\lambda x y. x) P Q \\
+						= & (\lambda y. P) Q     \\
+						= & P                    \\
+					\end{array}\hfill%
+				\]
+			\end{minipage}
+			\begin{minipage}{0.5\linewidth}
+				\[
+					\begin{array}{cl}
+						  & S P Q R                          \\
+						= & (\lambda x y z. x z (y z)) P Q R \\
+						= & (\lambda y z. P z (y z)) Q R     \\
+						= & (\lambda z. P z (Q z)) R         \\
+						= & P R (Q R)                        \\
+					\end{array}
+				\]
+			\end{minipage}
+		\end{solution}
 
-        \part Show that S K K = I.
-\begin{solution}
-    \[
-        \begin{array}{cl}
-              & S K K \\
-            = & (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) \\
-            = & (\lambda y z. (\lambda x y. x) z (y z)) (\lambda x y. x)     \\
-            = & (\lambda y z. (\lambda y. z) (y z)) (\lambda x y. x)     \\
-            = & (\lambda y z. z) (\lambda x y. x)     \\
-            = & (\lambda z. z)      \\
-            = & (\lambda x. x)      \\
-        \end{array}
-    \]
-\end{solution}
+		\part Show that S K K = I.
+		\begin{solution}
+			\[
+				\begin{array}{cl}
+					  & S K K                                                        \\
+					= & (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) \\
+					= & (\lambda y z. (\lambda x y. x) z (y z)) (\lambda x y. x)     \\
+					= & (\lambda y z. (\lambda y. z) (y z)) (\lambda x y. x)         \\
+					= & (\lambda y z. z) (\lambda x y. x)                            \\
+					= & (\lambda z. z)                                               \\
+					= & (\lambda x. x)                                               \\
+				\end{array}
+			\]
+		\end{solution}
 
-        % \part Show that B U V W = U (V W).
-% \begin{solution}
-    % \begin{mathpar}
-        % \begin{array}{cl}
-        %       & B U V W \\
-        %     = & (S (K S) K) U V W \\
-        %     = & ((\lambda x y z. x z (y z)) (K S) K) U V W \\
-        %     = & ((\lambda y z. (K S) z (y z)) K) U V W \\
-        %     = & ((\lambda y z. S (y z)) K) U V W \\
-        %     = & ((\lambda z. S (U z)) K) V W \\
-        %     = & ((S (U V)) K) V W \\
-        %     = & ((\lambda x y z. x z (y z)) (U V) K) V W \\
-        %     = & ((\lambda y z. (U V) z (y z)) K) V W \\
-        %     = & (\lambda z. (U V) z (K z)) V W \\
-        %     = & (U V) V (K V) V W \\
-        % \end{array}
-    % \end{mathpar}
-% \end{solution}
-    \end{parts}
+		% \part Show that B U V W = U (V W).
+		% \begin{solution}
+		% \begin{mathpar}
+		% \begin{array}{cl}
+		%       & B U V W \\
+		%     = & (S (K S) K) U V W \\
+		%     = & ((\lambda x y z. x z (y z)) (K S) K) U V W \\
+		%     = & ((\lambda y z. (K S) z (y z)) K) U V W \\
+		%     = & ((\lambda y z. S (y z)) K) U V W \\
+		%     = & ((\lambda z. S (U z)) K) V W \\
+		%     = & ((S (U V)) K) V W \\
+		%     = & ((\lambda x y z. x z (y z)) (U V) K) V W \\
+		%     = & ((\lambda y z. (U V) z (y z)) K) V W \\
+		%     = & (\lambda z. (U V) z (K z)) V W \\
+		%     = & (U V) V (K V) V W \\
+		% \end{array}
+		% \end{mathpar}
+		% \end{solution}
+	\end{parts}
 
 	% 1.10
 	\question
