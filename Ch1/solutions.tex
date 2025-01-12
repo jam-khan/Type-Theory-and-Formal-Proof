@@ -3,6 +3,8 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{mathpartir}
+\usepackage{forest}
 \usepackage[utf8]{inputenc}
 
 \title{Chapter 1: Untyped Lambda Calculus}
@@ -56,12 +58,14 @@
 			\]
 
 			Now simplify:\\
-			\begin{align*}
-				(\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
-				 & = (\lambda y . (\lambda z . (z (((\lambda u . u) y) z))))                                \\
-				 & = (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y]                        \\
-				 & = \lambda y . (\lambda z . (z (y z)))
-			\end{align*}
+    \[
+            \begin{array}{cl}
+                   & (\lambda x . (\lambda y . (\lambda z . (z ((x y) z))))) (\lambda u . u) [x = \lambda u . u] \\
+				 = & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z))))                                \\
+				 = & (\lambda y . (\lambda z . (z (((\lambda u . u) y) z)))) [u = y]                        \\
+				 = & \lambda y . (\lambda z . (z (y z)))
+			\end{array}
+    \]
 		\end{solution}
 	\end{parts}
 
@@ -76,7 +80,7 @@ Which of the following are $\alpha$-equivalent to $\lambda x. x (\lambda x. x)$ 
 \part $\lambda y. y (\lambda x. x)$
 
 \begin{solution}
-$[x/y] => \lambda x. x (\lambda x. x)$
+$[x/y] \Rightarrow \lambda x. x (\lambda x. x)$
 
 So, yes.
 \end{solution}
@@ -102,17 +106,127 @@ Prove that $\lambda x. x (\lambda z. y) =_\alpha \lambda z. z (\lambda z. y)$.
 
 \begin{solution}
 
-\begin{tabular}{l|l}
-Term & Reason \\
-\hline
-$\lambda x. x (\lambda z. y)$ &                            \\
-$\lambda z. z (\lambda z. y)$ & $[z/x]$ $\alpha$-reduction \\
+\begin{tabular}{cll}
+      & $\lambda x. x (\lambda z. y)$ &                                \\
+    = & $\lambda z. z (\lambda z. y)$ & (Reason: $[z/x]$ $\alpha$-reduction) \\
 \end{tabular}
 
 \end{solution}
 
 	% 1.4
 	\question
+    \begin{parts}
+        \part
+Give U as its tree representation.
+
+        \begin{solution}
+Based on the definition of diagrams as in Figure 1.1
+\begin{itemize}
+\item Application are joint points labelled 'a'.
+\item Abstraction are marked here with $\lambda$ (circled in book)
+\end{itemize}
+
+\begin{center}
+\begin{forest}
+[a
+    [$\lambda z$
+      [a
+        [z]
+        [x]
+      ]
+      [z]
+    ]
+    [a
+      [$\lambda y$
+        [a
+          [x]
+          [y]
+        ]
+      ]
+      [x]
+    ]
+]
+\end{forest}
+\end{center} 
+            beginbegin
+        \end{solution}
+
+
+\part Generate free variables of $U$ (as in Examples 1.4.2).
+   
+\begin{solution}
+Free variables can be found as:
+
+\begin{mathpar}
+    \begin{array}{rcl}
+FV(x)    &  = &  x \\
+FV(M N)  & =  & FV(M) \cup FV(N) \\
+FV(\lambda x. M)  & = &  FV(M) \ {x} \\
+    \end{array}
+\end{mathpar}
+
+For given lambda term, the free variables are:
+
+\begin{mathpar}
+    \begin{array}{cl}
+   & FV[(\lambda z. z x z)((\lambda y. x y) x)] \\
+ = & FV(\lambda z. z x z) \cup FV((\lambda y. x y) x) \\
+  & FV(\lambda z. z x z) \\
+\\
+= & FV((z x) z) \ {z} \\
+= & [FV(z x) \cup {z}] \ {z} \\
+= & [{z, x} \cup {z}] \ {z} \\
+= & {x} \\
+\\
+  & FV((\lambda y. x y) x) \\
+= & FV(\lambda y. x y) \cup {x} \\
+= & [FV(x y) \ {y}] \cup {x} \\
+= & {x}
+    \end{array}
+\end{mathpar}
+
+Therefore, the answer is: ${x} \cup {x}  = {x}$
+
+\end{solution}
+
+\part
+Find out which of the following $\lambda$-terms are $\alpha$-equivalent to $U$
+and give a motivation why; also check which of them satisﬁes the Barendregt
+convention:
+\begin{itemize}
+    \item $(\lambda y. y x y)((\lambda z. x z) x)$
+ \item $(\lambda x. x y x)((\lambda z. y z) y)$
+ \item $(\lambda y. y x y)((\lambda y. x y) x)$
+ \item $(\lambda v. (v x) v)((\lambda u. u v) x)$
+\end{itemize}
+     
+\begin{solution}
+The last one is not $\alpha$-equiv to $U$ because of the second sub-term.
+All others are.
+
+Barendregt convention means to avoid using variables names that will
+cause shadowing and free variable capture.
+
+\begin{itemize}
+  \item 1st one doesn't satisfy Barendregt conventions because of $(\lambda z. x z) x$
+  \item Likewise 2nd one, because of $((\lambda z. y z) y)$
+  \item Likewise 3rd one, because of $((\lambda y. x y) x)$
+\end{itemize}
+   
+Last one:
+   
+\begin{mathpar}
+    \begin{array}{cl}
+   & (\lambda v. (v x) v) ((\lambda u. u v) x) \\
+ = & (\lambda v. (v x) v) (x v) \\
+ = & ((x v) x) (x v) \\
+   \end{array}
+\end{mathpar}
+
+So last one doesn't satisfy Barendregt convention either..
+\end{solution}
+
+    \end{parts}
 
 	% 1.5
 	\question
@@ -171,7 +285,7 @@ $(\lambda y.\ y\ y\ (y\ z))$
 	% 1.8
 	\question
 
-	1.9
+	% 1.9
 	\question
 Let
     \begin{itemize}
@@ -185,6 +299,8 @@ Let
     \begin{parts}
         \part Show that $K P Q \twoheadrightarrow_{\beta}\ = I$ and $S P Q R \twoheadrightarrow_{\beta}\ = P R (Q R)$.
 \begin{solution}
+    \\
+    \begin{minipage}{0.5\linewidth}
     \[
         \begin{array}{cl}
               & K P Q \\
@@ -192,6 +308,10 @@ Let
             = & (\lambda y. P) Q \\
             = & P \\
         \end{array}\hfill%
+    \]
+    \end{minipage}
+    \begin{minipage}{0.5\linewidth}
+    \[
         \begin{array}{cl}
               & S P Q R \\
             = & (\lambda x y z. x z (y z)) P Q R \\
@@ -199,7 +319,8 @@ Let
             = & (\lambda z. P z (Q z)) R \\
             = & P R (Q R) \\
         \end{array}
-        \]
+   \]
+    \end{minipage}
 \end{solution}
 
         \part Show that S K K = I.
