@@ -7,11 +7,11 @@
  - [x] 1.03: Julin
  - [x] 1.04: Julin
  - [x] 1.05: Julin
- - [x] 1.06: Nomiss
- - [x] 1.07: Nomiss
+ - [x] 1.06: Nomisss
+ - [x] 1.07: Nomisss
  - [x] 1.08: Jam
- - [x] 1.09: Nomiss
- - [x] 1.10: Nomiss
+ - [x] 1.09: Nomisss
+ - [x] 1.10: Nomisss
  - [ ] 1.11
  - [ ] 1.12
  - [ ] 1.13

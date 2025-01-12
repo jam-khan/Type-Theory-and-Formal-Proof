@@ -293,78 +293,9 @@
             Can't be reduced further to a single term.
             
         \end{solution}
+
 	% 1.9
 	\question
-	Let
-	\begin{itemize}
-		\item $S = \lambda x y z. (x z) (y z)$
-		\item $K = \lambda x y. x$
-		\item $I = \lambda x. x$
-		\item $P$, $Q$, $R$, $U$, $V$, $W$ are arbitrary lambda terms.
-		\item $B = S (K S) K$
-	\end{itemize}
-
-	\begin{parts}
-		\part Show that $K P Q \twoheadrightarrow_{\beta}\ = I$ and $S P Q R \twoheadrightarrow_{\beta}\ = P R (Q R)$.
-		\begin{solution}
-			\\
-			\begin{minipage}{0.5\linewidth}
-				\[
-					\begin{array}{cl}
-						  & K P Q                \\
-						= & (\lambda x y. x) P Q \\
-						= & (\lambda y. P) Q     \\
-						= & P                    \\
-					\end{array}\hfill%
-				\]
-			\end{minipage}
-			\begin{minipage}{0.5\linewidth}
-				\[
-					\begin{array}{cl}
-						  & S P Q R                          \\
-						= & (\lambda x y z. x z (y z)) P Q R \\
-						= & (\lambda y z. P z (y z)) Q R     \\
-						= & (\lambda z. P z (Q z)) R         \\
-						= & P R (Q R)                        \\
-					\end{array}
-				\]
-			\end{minipage}
-		\end{solution}
-
-		\part Show that S K K = I.
-		\begin{solution}
-			\[
-				\begin{array}{cl}
-					  & S K K                                                        \\
-					= & (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) \\
-					= & (\lambda y z. (\lambda x y. x) z (y z)) (\lambda x y. x)     \\
-					= & (\lambda y z. (\lambda y. z) (y z)) (\lambda x y. x)         \\
-					= & (\lambda y z. z) (\lambda x y. x)                            \\
-					= & (\lambda z. z)                                               \\
-					= & (\lambda x. x)                                               \\
-				\end{array}
-			\]
-		\end{solution}
-
-		% \part Show that B U V W = U (V W).
-		% \begin{solution}
-		% \begin{mathpar}
-		% \begin{array}{cl}
-		%       & B U V W \\
-		%     = & (S (K S) K) U V W \\
-		%     = & ((\lambda x y z. x z (y z)) (K S) K) U V W \\
-		%     = & ((\lambda y z. (K S) z (y z)) K) U V W \\
-		%     = & ((\lambda y z. S (y z)) K) U V W \\
-		%     = & ((\lambda z. S (U z)) K) V W \\
-		%     = & ((S (U V)) K) V W \\
-		%     = & ((\lambda x y z. x z (y z)) (U V) K) V W \\
-		%     = & ((\lambda y z. (U V) z (y z)) K) V W \\
-		%     = & (\lambda z. (U V) z (K z)) V W \\
-		%     = & (U V) V (K V) V W \\
-		% \end{array}
-		% \end{mathpar}
-		% \end{solution}
-	\end{parts}
 
 	% 1.10
 	\question
