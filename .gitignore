@@ -1,0 +1,7 @@
+*.log
+*.aux
+*.var
+*.out
+*.xdv
+*.pdf
+.DS_Store/
